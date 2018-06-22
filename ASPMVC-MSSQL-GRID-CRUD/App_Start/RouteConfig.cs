@@ -16,7 +16,7 @@ namespace ASPMVC_MSSQL_GRID_CRUD
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "RenderGrid", id = UrlParameter.Optional }
             );
         }
     }

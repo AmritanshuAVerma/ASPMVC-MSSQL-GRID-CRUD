@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ASPMVC_MSSQL_GRID_CRUD.Models.Customer>
+@using GridMvc.Html
+
+
+@{ 
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+<div>
+    @*<div>(@Html.Grid(Model)).ToHtmlString()></div>*@
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.CustomerID).Titled("Customer ID").Filterable(true);
+    columns.Add(c => c.CompanyName).Titled("Company Name").Filterable(true);
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Edit", "Edit", new { id = o.CustomerID }));
+
+
+}).WithPaging(10).Sortable(true)
+</div>  
